@@ -1,0 +1,10 @@
+syntax = "proto2";
+package jagw;
+
+option go_package = "github.com/jalapeno-api-gateway/jagw-go;jagw";
+
+message MultiTopologyIdentifier {
+    required bool o_flag = 1;
+    required bool a_flag = 2;
+    required uint32 mtid = 3; // protobuf does not support uint16
+}

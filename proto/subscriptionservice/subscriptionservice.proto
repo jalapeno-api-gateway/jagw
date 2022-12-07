@@ -1,0 +1,69 @@
+syntax = "proto2";
+package jagw;
+
+option go_package = "github.com/jalapeno-api-gateway/jagw-go;jagw";
+
+import "core/topology.proto";
+import "core/filters.proto";
+
+service SubscriptionService {
+    rpc SubscribeToLsNodes(TopologySubscription) returns (stream LsNodeEvent) {}
+    rpc SubscribeToLsLinks(TopologySubscription) returns (stream LsLinkEvent) {}
+    rpc SubscribeToLsPrefixes(TopologySubscription) returns (stream LsPrefixEvent) {}
+    rpc SubscribeToLsSrv6Sids(TopologySubscription) returns (stream LsSrv6SidEvent) {}
+    rpc SubscribeToLsNodeEdges(TopologySubscription) returns (stream LsNodeEdgeEvent) {}
+    rpc SubscribeToPeers(TopologySubscription) returns (stream PeerEvent) {}
+    rpc SubscribeToTelemetryData(TelemetrySubscription) returns (stream TelemetryEvent) {}
+}
+
+message TopologySubscription {
+    repeated string keys = 1;
+    repeated string properties = 2;
+}
+
+message TelemetrySubscription {
+    required string sensor_path = 1;
+    repeated string properties = 2;
+    optional bool Unflatten = 3;
+    repeated StringFilter string_filters = 4;
+}
+
+message LsNodeEvent {
+    required string action = 1;
+    required string key = 2;
+    optional LsNode ls_node = 3;
+}
+
+message LsLinkEvent {
+    required string action = 1;
+    required string key = 2;
+    optional LsLink ls_link = 3;
+}
+
+message LsPrefixEvent {
+    required string action = 1;
+    required string key = 2;
+    optional LsPrefix ls_prefix = 3;
+}
+
+message LsSrv6SidEvent {
+    required string action = 1;
+    required string key = 2;
+    optional LsSrv6Sid ls_srv6_sid = 3;
+}
+
+message LsNodeEdgeEvent {
+    required string action = 1;
+    required string key = 2;
+    optional LsNodeEdge ls_node_edge = 3;
+}
+
+message PeerEvent {
+    required string action = 1;
+    required string key = 2;
+    optional Peer peer = 3;
+}
+
+message TelemetryEvent {
+    required string telemetry_data = 1;
+}

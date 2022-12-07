@@ -1,0 +1,17 @@
+syntax = "proto2";
+package jagw;
+
+option go_package = "github.com/jalapeno-api-gateway/jagw-go;jagw";
+
+import "core/enums.proto";
+
+message StringFilter {
+    required string property = 1;
+    required string value = 2;
+    required StringOperator operator = 3;
+}
+
+message RangeFilter {
+    required int64 earliest_timestamp = 3;
+    optional int64 latest_timestamp = 4;    
+}

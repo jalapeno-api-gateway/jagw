@@ -1,0 +1,121 @@
+syntax = "proto2";
+package jagw;
+
+option go_package = "github.com/jalapeno-api-gateway/jagw-go;jagw";
+
+import "core/base.proto";
+
+message LsNode {
+	required string key = 1;
+	optional string id = 2;
+	optional string router_hash = 3;
+	optional int64 domain_id = 4;
+	optional string router_ip = 5;
+	optional string peer_hash = 6;
+	optional string peer_ip = 7;
+	optional int32 peer_asn = 8;
+	optional string timestamp = 9;
+	optional string igp_router_id = 10;
+	optional uint32 asn = 11;
+	repeated MultiTopologyIdentifier mtid = 12;
+	optional string area_id = 13;
+	optional string protocol = 14;
+	optional uint32 protocol_id = 15; // protobuf does not support uint8
+	optional string name = 16;
+	optional bool is_prepolicy = 17;
+	optional bool is_adj_rib_in = 18;
+}
+
+message LsLink {
+	required string key = 1;
+	optional string id = 2;
+	optional string router_hash = 3;
+	optional string router_ip = 4;
+	optional int64 domain_id = 5;
+	optional string peer_hash = 6;
+	optional string peer_ip = 7;
+	optional int32 peer_asn = 8;
+	optional string timestamp = 9;
+	optional string igp_router_id = 10;
+	optional string protocol = 11;
+	optional string area_id = 12;
+	optional string nexthop = 13;
+	optional MultiTopologyIdentifier mtid = 14;
+	optional string local_link_id = 15;
+	optional string remote_link_id = 16;
+	optional string local_link_ip = 17;
+	optional string remote_link_ip = 18;
+	optional uint32 igp_metric = 19;
+	optional string remote_node_hash = 20;
+	optional string local_node_hash = 21;
+	optional string remote_igp_router_id = 22;
+}
+
+message LsPrefix {
+	required string key = 1;
+	optional string id = 2;
+	optional string router_hash = 3;
+	optional string router_ip = 4;
+	optional int64 domain_id = 5;
+	optional string peer_hash = 6;
+	optional string peer_ip = 7;
+	optional int32 peer_asn = 8;
+	optional string timestamp = 9;
+	optional string igp_router_id = 10;
+	optional string protocol = 11;
+	optional string area_id = 12;
+	optional string nexthop = 13;
+	optional string local_node_hash = 14;
+	optional MultiTopologyIdentifier mtid = 15;
+	optional string prefix = 16;
+	optional int32 prefix_len = 17;
+	optional uint32 prefix_metric = 18;
+	optional bool is_prepolicy = 19;
+	optional bool is_adj_rib_in = 20;
+}
+
+message LsSrv6Sid {
+	required string key = 1;
+	optional string id = 2;
+	optional string router_hash = 3;
+	optional string router_ip = 4;
+	optional int64 domain_id = 5;
+	optional string peer_hash = 6;
+	optional string peer_ip = 7;
+	optional int32 peer_asn = 8;
+	optional string timestamp = 9;
+	optional string igp_router_id = 10;
+	optional uint32 local_node_asn = 11;
+	optional string protocol = 12;
+	optional string nexthop = 13;
+	optional string local_node_hash = 14;
+	optional MultiTopologyIdentifier mtid = 15;
+	optional uint32 igp_flags = 16; // protobuf does not support uint8
+	optional bool is_prepolicy = 17;
+	optional bool is_adj_rib_in = 18;
+	optional string srv6_sid = 19;
+}
+
+message LsNodeEdge {
+	required string key = 1;
+	optional string id = 2;
+	optional string from = 3;
+	optional string to = 4;
+	optional string link = 5;
+}
+
+message LsNodeCoordinates {
+	required string key = 1;
+	optional string id = 2;
+	required string ls_node_key = 3;
+	required double latitude = 4;
+	required double longitude = 5;
+}
+
+message Peer{
+	required string key = 1;
+	optional string id = 2;
+	optional string router_hash = 3;
+	optional string remote_bgp_id = 4;
+	optional string local_bgp_id = 5;
+}

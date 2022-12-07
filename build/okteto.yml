@@ -1,0 +1,39 @@
+dev:
+  cache-service:
+    image: okteto/golang:1.18
+    command: bash
+    workdir: /okteto
+    volumes:
+      - /go/pkg/             
+      - /root/.cache/go-build/
+      - /root/.vscode-server
+    securityContext:
+      capabilities:
+        add:
+        - SYS_PTRACE
+
+  request-service:
+    image: okteto/golang:1.18
+    command: bash
+    workdir: /okteto
+    volumes:
+      - /go/pkg/             
+      - /root/.cache/go-build/
+      - /root/.vscode-server
+    securityContext:
+      capabilities:
+        add:
+        - SYS_PTRACE
+
+  subscription-service:
+    image: okteto/golang:1.18
+    command: bash
+    workdir: /okteto
+    volumes:
+      - /go/pkg/             
+      - /root/.cache/go-build/
+      - /root/.vscode-server
+    securityContext:
+      capabilities:
+        add:
+        - SYS_PTRACE

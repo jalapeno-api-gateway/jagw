@@ -1,0 +1,18 @@
+name: cache-service
+namespace: jagw-dev-julian
+image: okteto/golang:1.18
+autocreate: false
+workdir: /okteto
+command: /bin/bash
+volumes:
+  - /go/pkg/             
+  - /root/.cache/go-build/
+  - /root/.vscode-server
+securityContext:
+  capabilities:
+    add:
+    - SYS_PTRACE
+forward:
+  - 8080:8080
+persistentVolume:
+  enabled: true

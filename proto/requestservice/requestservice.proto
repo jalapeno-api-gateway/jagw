@@ -1,0 +1,96 @@
+syntax = "proto2";
+package jagw;
+
+option go_package = "github.com/jalapeno-api-gateway/jagw-go;jagw";
+
+import "core/topology.proto";
+import "core/filters.proto";
+
+service RequestService {
+    rpc GetLsNodes(TopologyRequest) returns (LsNodeResponse) {}
+    rpc GetLsLinks(TopologyRequest) returns (LsLinkResponse) {}
+    rpc GetLsPrefixes(TopologyRequest) returns (LsPrefixResponse) {}
+    rpc GetLsSrv6Sids(TopologyRequest) returns (LsSrv6SidResponse) {}
+    rpc GetLsNodeEdges(TopologyRequest) returns (LsNodeEdgeResponse) {}
+    rpc GetPeers(TopologyRequest) returns (PeerResponse) {}
+    rpc GetLsNodeCoordinates(LsNodeCoordinatesRequest) returns (LsNodeCoordinatesResponse) {}
+    rpc GetTelemetryData(TelemetryRequest) returns (TelemetryResponse) {}
+    rpc GetMeasurements(MeasurementsRequest) returns (MeasurementsResponse) {}
+    rpc GetMeasurementDetails(MeasurementDetailsRequest) returns (MeasurementDetailsResponse) {}
+}
+
+message MeasurementsRequest {}
+
+message MeasurementsResponse {
+    repeated Measurement measurements = 1;
+}
+
+message Measurement {
+    required string name = 1;
+    required int64 timestamp_latest_measurement = 2;
+}
+
+message MeasurementDetailsRequest {
+    required string name = 1;
+}
+
+message MeasurementDetailsResponse {
+    required int64 timestamp_latest_measurement = 1;
+    repeated MeasurementColumn columns = 2;
+}
+
+message MeasurementColumn {
+    required string name = 1;
+    required string type = 2;
+    required string influx_type = 3;
+    required string last_value_stringyfied = 4;
+}
+
+message TopologyRequest {
+    repeated string keys = 1;
+    repeated string properties = 2;
+}
+
+message LsNodeCoordinatesRequest {
+    repeated string ls_node_keys = 1;
+}
+
+message TelemetryRequest {
+    required string sensor_path = 1;
+    repeated string properties = 2;
+    optional bool Unflatten = 3;
+    repeated StringFilter string_filters = 4;
+    optional RangeFilter range_filter = 5;
+}
+
+message LsNodeResponse {
+    repeated LsNode ls_nodes = 1;
+}
+
+message LsLinkResponse {
+    repeated LsLink ls_links = 1;
+}
+
+message LsPrefixResponse {
+    repeated LsPrefix ls_prefixes = 1;
+}
+
+message LsSrv6SidResponse {
+    repeated LsSrv6Sid ls_srv6_sids = 1;
+}
+
+message LsNodeEdgeResponse {
+    repeated LsNodeEdge ls_node_edges = 1;
+}
+
+message LsNodeCoordinatesResponse {
+    repeated LsNodeCoordinates coordinates = 1;
+}
+
+message PeerResponse {
+    repeated Peer peer = 1;
+}
+
+message TelemetryResponse {
+    repeated string telemetry_data = 1;
+}
