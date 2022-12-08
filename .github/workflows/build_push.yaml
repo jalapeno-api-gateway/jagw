@@ -1,0 +1,39 @@
+name: Build and Push Services
+
+on:
+  # release:
+    # types: [published]
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ./build
+    strategy:
+      matrix:
+        service: [cache-service, subscription-service, request-service]
+
+    steps:
+    - uses: actions/checkout@v2
+    
+    - name: Login to github container registry
+      uses: docker/login-action@v1
+      with:
+        registry: ghcr.io
+        username: ${{ github.repository_owner }}
+        password: ${{ github.token }}
+
+    - name: Build and tag latest docker image
+      run: make build_${{ matrix.service }} -e REGISTRY_USERNAME=${{ github.repository_owner }}
+
+    - name: Tag versioned image
+      run: docker tag ${{ github.repository_owner }}/${{ matrix.service }}:latest ${{ github.repository_owner }}/${{ matrix.service }}:${{  }}
+
+    - name: Push the images
+      run: 
+      - docker push ${{ github.repository_owner }}/${{ matrix.service }}:latest
+      - docker push ${{ github.repository_owner }}/${{ matrix.service }}:${{  }}
