@@ -6,14 +6,13 @@ on:
       - main
   workflow_dispatch:
 
-defaults:
-  run:
-    working-directory: ./docs
 
 jobs:
   deploy:
     name: Deploy to GitHub Pages
     runs-on: ubuntu-latest
+    env:
+      working-directory: ./docs
     steps:
       - uses: actions/checkout@v2
       - uses: actions/setup-node@v3
@@ -22,8 +21,10 @@ jobs:
           cache: yarn
       - name: Install dependencies
         run: yarn install --frozen-lockfile
+        working-directory: ${{env.working-directory}}
       - name: Build website
         run: yarn build
+        working-directory: ${{env.working-directory}}
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         with:
@@ -32,3 +33,4 @@ jobs:
           publish_dir: ./build
           user_name: github-actions[bot]
           user_email: 41898282+github-actions[bot]@users.noreply.github.com
+        working-directory: ${{env.working-directory}}
