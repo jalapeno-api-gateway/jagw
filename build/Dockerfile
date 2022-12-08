@@ -4,11 +4,11 @@ ARG SERVICE_NAME
 
 WORKDIR /app
 
-COPY ../go.mod ./
-COPY ../go.sum ./
+COPY go.mod ./
+COPY go.sum ./
 RUN go mod download
 
-COPY ../ ./
+COPY . .
 
 RUN go build -o /app/service /app/cmd/${SERVICE_NAME}/${SERVICE_NAME}.go
 
