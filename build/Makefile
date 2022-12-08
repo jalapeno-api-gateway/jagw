@@ -1,4 +1,5 @@
 REGISTRY_USERNAME ?= jalapeno-api-gateway
+REGISTRY_NAME ?= ghcr.io
 REGISTRY_PASSWORD ?= $(shell cat ~/.docker/config.json | jq -r '.auths."https://index.docker.io/v1/".auth' | base64 -d | cut -d: -f2)
 BUILD_ARGS_TAG ?= latest
 BUILD_ARGS_DOCKERFILE ?= ./Dockerfile
@@ -17,6 +18,7 @@ help:
 	@echo "  help                 		Show this help"
 	@echo ""
 	@echo "Variables:"
+	@echo "  REGISTRY_NAME      		Registry name (default: ghcr.io)"
 	@echo "  REGISTRY_USERNAME      	Registry username (default: jalapeno-api-gateway)"
 	@echo "  REGISTRY_PASSWORD		Registry password"
 	@echo "  BUILD_ARGS_TAG      		Tag to use for build (default: latest)"
@@ -25,7 +27,7 @@ help:
 
 build_%:
 	docker build \
-	--tag ${REGISTRY_USERNAME}/$*:${BUILD_ARGS_TAG} \
+	--tag ${REGISTRY_NAME}/${REGISTRY_USERNAME}/$*:${BUILD_ARGS_TAG} \
 	-f ${BUILD_ARGS_DOCKERFILE} \
 	--build-arg SERVICE_NAME="$*" ../
 
