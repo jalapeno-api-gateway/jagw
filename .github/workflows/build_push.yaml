@@ -10,9 +10,9 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-    defaults:
-      run:
-        working-directory: ./build
+    # defaults:
+      # run:
+        # working-directory: ./build
     strategy:
       matrix:
         service: [cache-service, subscription-service, request-service]
@@ -28,7 +28,9 @@ jobs:
         password: ${{ github.token }}
 
     - name: Build and tag latest docker image
-      run: make build_${{ matrix.service }} -e REGISTRY_USERNAME=${{ github.repository_owner }}
+      run: |
+        cd build
+        make build_${{ matrix.service }} -e REGISTRY_USERNAME=${{ github.repository_owner }}
 
     # - name: Tag versioned image
       # run: docker tag ${{ github.repository_owner }}/${{ matrix.service }}:latest ${{ github.repository_owner }}/${{ matrix.service }}:${{  }}
