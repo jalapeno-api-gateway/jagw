@@ -1,18 +1,12 @@
 name: Build and Push Services
 
 on:
-  # release:
-    # types: [published]
-  push:
-    branches:
-      - main
+  release:
+    types: [published]
 
 jobs:
   build:
     runs-on: ubuntu-latest
-    # defaults:
-      # run:
-        # working-directory: ./build
     strategy:
       matrix:
         service: [cache-service, subscription-service, request-service]
@@ -27,14 +21,19 @@ jobs:
         username: ${{ github.repository_owner }}
         password: ${{ github.token }}
 
+    - name: Get the tag
+      id: vars
+      run: echo ::set-output name=tag::$(echo ${GITHUB_REF:10})
+
     - name: Build and tag latest docker image
       run: |
         cd build
         make build_${{ matrix.service }} -e REGISTRY_USERNAME=${{ github.repository_owner }}
 
-    # - name: Tag versioned image
-      # run: docker tag ghcr.io/${{ github.repository_owner }}/${{ matrix.service }}:latest ghcr.io/${{ github.repository_owner }}/${{ matrix.service }}:${{  }}
+    - name: Tag versioned image
+      run: docker tag ghcr.io/${{ github.repository_owner }}/${{ matrix.service }}:latest ghcr.io/${{ github.repository_owner }}/${{ matrix.service }}:${{ steps.vars.outputs.tag }}
 
     - name: Push the images
       run: |
         docker push ghcr.io/${{ github.repository_owner }}/${{ matrix.service }}:latest
+        docker push ghcr.io/${{ github.repository_owner }}/${{ matrix.service }}:${{ steps.vars.outputs.tag}}
