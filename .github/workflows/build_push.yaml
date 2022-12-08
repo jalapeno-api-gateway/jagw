@@ -34,6 +34,6 @@ jobs:
       run: docker tag ${{ github.repository_owner }}/${{ matrix.service }}:latest ${{ github.repository_owner }}/${{ matrix.service }}:${{  }}
 
     - name: Push the images
-      run: 
-      - docker push ${{ github.repository_owner }}/${{ matrix.service }}:latest
-      - docker push ${{ github.repository_owner }}/${{ matrix.service }}:${{  }}
+      run: |
+        docker push ${{ github.repository_owner }}/${{ matrix.service }}:latest
+        docker push ${{ github.repository_owner }}/${{ matrix.service }}:${{  }}
