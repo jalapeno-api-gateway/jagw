@@ -1,6 +1,6 @@
 # Jalapeño API Gateway Docs
 
-This is the source code of the [Jalapeño API Gateway Docs Website](https://jalapeno-api-gateway.github.io/jagw-docs/).
+This is the source code of the [Jalapeño API Gateway Docs Website](https://jalapeno-api-gateway.github.io/jagw/).
 
 This website is built using [Docusaurus 2](https://docusaurus.io/).
 
