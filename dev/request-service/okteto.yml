@@ -1,0 +1,17 @@
+name: request-service
+image: okteto/golang:1.18
+autocreate: false
+workdir: /okteto
+command: /bin/bash
+volumes:
+  - /go/pkg/             
+  - /root/.cache/go-build/
+  - /root/.vscode-server
+sync:
+  - ../../:/okteto
+securityContext:
+  capabilities:
+    add:
+    - SYS_PTRACE
+persistentVolume:
+  enabled: true
