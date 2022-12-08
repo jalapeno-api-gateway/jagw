@@ -34,7 +34,7 @@ build_%:
 build: $(SERVICES:%=build_%)
 
 push_%:
-	$(MAKE) _pusher \ 
-				-e
+	docker push \
+	${REGISTRY_NAME}/${REGISTRY_USERNAME}/$*:${BUILD_ARGS_TAG}
 
 push: $(SERVICES:%=push_%)
