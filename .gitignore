@@ -3,3 +3,4 @@ out
 .vscode
 .idea
 .DS_Store
+okteto.yml
