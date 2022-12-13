@@ -7,7 +7,7 @@ const darkCodeTheme = require('prism-react-renderer/themes/dracula');
   title: 'Jalapeño API Gateway',
   tagline: 'A simple, light-weight, cloud-native API Gateway for Jalapeño.',
   url: 'https://jalapeno-api-gateway.github.io',
-  baseUrl: '/jagw-docs/',
+  baseUrl: '/jagw/',
   onBrokenLinks: 'throw',
   onBrokenMarkdownLinks: 'warn',
   favicon: 'img/favicon.ico',
