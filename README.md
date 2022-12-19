@@ -4,8 +4,8 @@
 <h1 align="center">JAGW</h1>
 <p align="center">
 	<img src="https://img.shields.io/github/v/tag/jalapeno-api-gateway/jagw.svg?label=release&logo=github&style=flat-square">
-	<img alt="Build" src="https://img.shields.io/github/workflow/status/jalapeno-api-gateway/jagw/Build%20and%20Push%20Services?label=build&logo=github&style=flat-square">
-	<img alt="Documentation" src="https://img.shields.io/github/workflow/status/jalapeno-api-gateway/jagw/Deploy%20Documentation%20to%20GitHub%20Pages?label=docs&logo=github&style=flat-square">
+	<img alt="GitHub Workflow Status" src="https://img.shields.io/github/actions/workflow/status/jalapeno-api-gateway/jagw/build_push.yaml?branch=main&logo=github&style=flat-square">
+	<img alt="GitHub Workflow Status" src="https://img.shields.io/github/actions/workflow/status/jalapeno-api-gateway/jagw/deploy_docs.yaml?branch=main&label=docs&logo=github&style=flat-square">
 </p>
 
 <p align="center">
