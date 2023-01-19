@@ -4,4 +4,5 @@ out
 .idea
 .DS_Store
 .docusaurus
+node_modules
 okteto.yml
