@@ -35,5 +35,6 @@ This includes the following steps:
 ## How to develop SR-Apps?
 Please have a look at the following repositories, they will help with the process:
 * [demo-sr-app](https://github.com/jalapeno-api-gateway/demo-sr-app) - Demonstration SR-App which includes basic examples for interacting with the gateway
+* [network_graph_visualizer](https://github.com/jalapeno-api-gateway/network_graph_visualizer) - Demonstration SR-App which shows the topology stored in Jalapeño
 * [jagw-go](https://github.com/jalapeno-api-gateway/jagw-go) - Go client library
 * [jagw-python](https://github.com/jalapeno-api-gateway/jagw-python) - Python client library
