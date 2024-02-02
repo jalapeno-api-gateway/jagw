@@ -19,7 +19,7 @@ func main() {
 	arango.InitializeArangoDbAdapter(logrus.StandardLogger(), config)
 
 	redis.InitializeRedisClient()
-	messages.StartEventConsumption()
+	messages.StartEventConsumption(messages.GetCacheServiceMessageHandlers())
 	redis.InitializeCache()
 	messages.StartEventProcessing()
 }

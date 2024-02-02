@@ -24,7 +24,7 @@ func main() {
 	arango.InitializeArangoDbAdapter(logrus.StandardLogger(), config)
 
 	messages.InitializeTopics()
-	messages.StartEventConsumption()
+	messages.StartEventConsumption(messages.GetSubscriptionServiceMessageHandlers())
 
 	serverAddress := os.Getenv("APP_SERVER_ADDRESS")
 
