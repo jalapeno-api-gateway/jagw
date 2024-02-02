@@ -1,48 +1,38 @@
 package messages
 
 import (
-	"github.com/jalapeno-api-gateway/jagw/pkg/model/class"
+	"github.com/Shopify/sarama"
 	"github.com/sirupsen/logrus"
 )
 
-func StartEventConsumption() {
+type MessageHandler func(msg KafkaEventMessage)
+
+func StartEventConsumption(topicHandlers map[string]MessageHandler) {
 	logrus.Debug("Starting Kafka event consumption.")
 
 	consumer := newSaramaConsumer()
-	lsNodeEventsConsumer := newPartitionConsumer(consumer, LSNODE_KAFKA_TOPIC)
-	lsLinkEventsConsumer := newPartitionConsumer(consumer, LSLINK_KAFKA_TOPIC)
-	lsPrefixEventsConsumer := newPartitionConsumer(consumer, LSPREFIX_KAFKA_TOPIC)
-	lsSrv6SidEventsConsumer := newPartitionConsumer(consumer, LSSRV6SID_KAFKA_TOPIC)
-	lsNodeEdgeEventsConsumer := newPartitionConsumer(consumer, LSNODE_EDGE_KAFKA_TOPIC)
-	telemetryConsumer := newPartitionConsumer(consumer, TELEMETRY_KAFKA_TOPIC)
+	consumers := make(map[string]sarama.PartitionConsumer)
+
+	for topic := range topicHandlers {
+		consumers[topic] = newPartitionConsumer(consumer, topic)
+	}
 
 	go func() {
 		defer func() {
-			closeConsumers(
-				consumer,
-				lsNodeEventsConsumer,
-				lsLinkEventsConsumer,
-				lsPrefixEventsConsumer,
-				lsSrv6SidEventsConsumer,
-				lsNodeEdgeEventsConsumer,
-				telemetryConsumer,
-			)
+			closeConsumers(consumer)
+			for _, c := range consumers {
+				c.Close()
+			}
 		}()
 
 		for {
-			select {
-			case msg := <-lsNodeEventsConsumer.Messages():
-				handleTopologyEvent(unmarshalKafkaMessage(msg), class.LsNode)
-			case msg := <-lsLinkEventsConsumer.Messages():
-				handleTopologyEvent(unmarshalKafkaMessage(msg), class.LsLink)
-			case msg := <-lsPrefixEventsConsumer.Messages():
-				handleTopologyEvent(unmarshalKafkaMessage(msg), class.LsPrefix)
-			case msg := <-lsSrv6SidEventsConsumer.Messages():
-				handleTopologyEvent(unmarshalKafkaMessage(msg), class.LsSrv6Sid)
-			case msg := <-lsNodeEdgeEventsConsumer.Messages():
-				handleTopologyEvent(unmarshalKafkaMessage(msg), class.LsNodeEdge)
-			case msg := <-telemetryConsumer.Messages():
-				handleTelemetryEvent(string(msg.Value))
+			for topic, handler := range topicHandlers {
+				select {
+				case msg := <-consumers[topic].Messages():
+					handler(unmarshalKafkaMessage(msg))
+				default:
+					continue
+				}
 			}
 		}
 	}()
