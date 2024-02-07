@@ -73,6 +73,10 @@ github.com/influxdata/line-protocol v0.0.0-20210922203350-b1ad95c89adf h1:7JTmne
 github.com/influxdata/line-protocol v0.0.0-20210922203350-b1ad95c89adf/go.mod h1:xaLFMmpvUxqXtVkUJfg9QmT88cDaCJ3ZKgdZ78oO8Qo=
 github.com/jalapeno-api-gateway/jagw-go v0.0.0-20221206162437-922bdcc79995 h1:/OeL9VJnQRDuY04zRrkgaHXxF10XOnl6IH3dzU91pD8=
 github.com/jalapeno-api-gateway/jagw-go v0.0.0-20221206162437-922bdcc79995/go.mod h1:qAWkx3+8xsQj5rvtoEpfaMok6zpgS8VU7Huytf9sybk=
+github.com/jalapeno-api-gateway/jagw-go v1.3.3-alpha h1:2CNhojJqh5VblaDXUbpAya4KD5cFfpzTfqz22WdNH8I=
+github.com/jalapeno-api-gateway/jagw-go v1.3.3-alpha/go.mod h1:qAWkx3+8xsQj5rvtoEpfaMok6zpgS8VU7Huytf9sybk=
+github.com/jalapeno-api-gateway/jagw-go v1.3.3 h1:+dBl0it3SxQeKF0VuoiSs/m1INCdcc3FbkjfZX5dTfk=
+github.com/jalapeno-api-gateway/jagw-go v1.3.3/go.mod h1:qAWkx3+8xsQj5rvtoEpfaMok6zpgS8VU7Huytf9sybk=
 github.com/jcmturner/aescts/v2 v2.0.0 h1:9YKLH6ey7H4eDBXW8khjYslgyqG2xZikXP0EQFKrle8=
 github.com/jcmturner/aescts/v2 v2.0.0/go.mod h1:AiaICIRyfYg35RUkr8yESTqvSy7csK90qZ5xfvvsoNs=
 github.com/jcmturner/dnsutils/v2 v2.0.0 h1:lltnkeZGL0wILNvrNiVCR6Ro5PGU/SeBvVO/8c/iPbo=

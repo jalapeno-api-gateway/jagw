@@ -42,6 +42,8 @@ var AllLsLinkProperties = []string{
 	RemoteNodeHash,
 	LocalNodeHash,
 	RemoteIgpRouterId,
+	UnidirLinkDelay,
+	UnidirLinkDelayMinMax,
 }
 
 var AllLsPrefixProperties = []string{
