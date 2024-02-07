@@ -49,6 +49,8 @@ message LsLink {
 	optional string remote_node_hash = 20;
 	optional string local_node_hash = 21;
 	optional string remote_igp_router_id = 22;
+	optional uint32 unidir_link_delay = 23;
+	repeated uint32 unidir_link_delay_min_max = 24;
 }
 
 message LsPrefix {

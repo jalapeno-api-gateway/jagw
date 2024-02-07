@@ -120,6 +120,10 @@ func convertLsLink(doc interface{}, properties []string) *jagw.LsLink {
 			lsLink.LocalNodeHash = proto.String(document.LocalNodeHash)
 		case property.RemoteIgpRouterId:
 			lsLink.RemoteIgpRouterId = proto.String(document.RemoteIgpRouterId)
+		case property.UnidirLinkDelay:
+			lsLink.UnidirLinkDelay = proto.Uint32(document.UnidirLinkDelay)
+		case property.UnidirLinkDelayMinMax:
+			lsLink.UnidirLinkDelayMinMax = document.UnidirLinkDelayMinMax
 		}
 	}
 
