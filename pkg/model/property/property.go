@@ -45,4 +45,10 @@ const (
 	Longitude               = "Longitude"
 	UnidirLinkDelay         = "UnidirLinkDelay"
 	UnidirLinkDelayMinMax   = "UnidirLinkDelayMinMax"
+	MaxLinkBWKbps           = "MaxLinkBWKbps"
+	UnidirDelayVariation    = "UnidirDelayVariation"
+	UnidirPacketLoss        = "UnidirPacketLoss"
+	UnidirResidualBW        = "UnidirResidualBW"
+	UnidirAvailableBW       = "UnidirAvailableBW"
+	UnidirBWUtilization     = "UnidirBWUtilization"
 )

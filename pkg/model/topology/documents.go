@@ -52,6 +52,12 @@ type LsLink struct {
 	RemoteIgpRouterId     string
 	UnidirLinkDelay       uint32
 	UnidirLinkDelayMinMax []uint32
+	MaxLinkBWKbps         uint64
+	UnidirDelayVariation  uint32
+	UnidirPacketLoss      float32
+	UnidirResidualBW      uint32
+	UnidirAvailableBW     uint32
+	UnidirBWUtilization   uint32
 }
 
 type LsPrefix struct {
