@@ -77,6 +77,8 @@ github.com/jalapeno-api-gateway/jagw-go v1.3.4-alpha h1:LzoRb4nAV9fNjo5VslIxHsQg
 github.com/jalapeno-api-gateway/jagw-go v1.3.4-alpha/go.mod h1:qAWkx3+8xsQj5rvtoEpfaMok6zpgS8VU7Huytf9sybk=
 github.com/jalapeno-api-gateway/jagw-go v1.3.4-beta h1:jD8g/ghSfrIsWPZzX8GSvLPAAtQ6CCJSpJnDucb+vfk=
 github.com/jalapeno-api-gateway/jagw-go v1.3.4-beta/go.mod h1:qAWkx3+8xsQj5rvtoEpfaMok6zpgS8VU7Huytf9sybk=
+github.com/jalapeno-api-gateway/jagw-go v1.3.4 h1:wBvfUTFPj8wqPB3iS4n/iaqzubelm8UA88k1kLi6Iek=
+github.com/jalapeno-api-gateway/jagw-go v1.3.4/go.mod h1:qAWkx3+8xsQj5rvtoEpfaMok6zpgS8VU7Huytf9sybk=
 github.com/jcmturner/aescts/v2 v2.0.0 h1:9YKLH6ey7H4eDBXW8khjYslgyqG2xZikXP0EQFKrle8=
 github.com/jcmturner/aescts/v2 v2.0.0/go.mod h1:AiaICIRyfYg35RUkr8yESTqvSy7csK90qZ5xfvvsoNs=
 github.com/jcmturner/dnsutils/v2 v2.0.0 h1:lltnkeZGL0wILNvrNiVCR6Ro5PGU/SeBvVO/8c/iPbo=
