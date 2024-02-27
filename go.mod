@@ -9,7 +9,7 @@ require (
 	github.com/google/uuid v1.3.0
 	github.com/influxdata/influxdb1-client v0.0.0-20220302092344-a9ab5670611c
 	github.com/influxdata/line-protocol v0.0.0-20210922203350-b1ad95c89adf
-	github.com/jalapeno-api-gateway/jagw-go v1.3.3
+	github.com/jalapeno-api-gateway/jagw-go v1.3.4-beta
 	github.com/nqd/flat v0.1.1
 	github.com/sirupsen/logrus v1.9.0
 	google.golang.org/grpc v1.51.0

@@ -46,6 +46,12 @@ type LSLink struct {
 	RemoteIGPRouterID     string                   `json:"remote_igp_router_id,omitempty"`
 	UnidirLinkDelay       uint32                   `json:"unidir_link_delay,omitempty"`
 	UnidirLinkDelayMinMax []uint32                 `json:"unidir_link_delay_min_max,omitempty"`
+	MaxLinkBWKbps         uint64                   `json:"max_link_bw_kbps,omitempty"`
+	UnidirDelayVariation  uint32                   `json:"unidir_delay_variation,omitempty"`
+	UnidirPacketLoss      float32                  `json:"unidir_packet_loss,omitempty"`
+	UnidirResidualBW      uint32                   `json:"unidir_residual_bw,omitempty"`
+	UnidirAvailableBW     uint32                   `json:"unidir_available_bw,omitempty"`
+	UnidirBWUtilization   uint32                   `json:"unidir_bw_utilization,omitempty"`
 }
 
 type LSPrefix struct {

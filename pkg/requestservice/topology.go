@@ -124,6 +124,18 @@ func convertLsLink(doc interface{}, properties []string) *jagw.LsLink {
 			lsLink.UnidirLinkDelay = proto.Uint32(document.UnidirLinkDelay)
 		case property.UnidirLinkDelayMinMax:
 			lsLink.UnidirLinkDelayMinMax = document.UnidirLinkDelayMinMax
+		case property.MaxLinkBWKbps:
+			lsLink.MaxLinkBwKbps = proto.Uint64(document.MaxLinkBWKbps)
+		case property.UnidirDelayVariation:
+			lsLink.UnidirDelayVariation = proto.Uint32(document.UnidirDelayVariation)
+		case property.UnidirPacketLoss:
+			lsLink.UnidirPacketLoss = proto.Float32(document.UnidirPacketLoss)
+		case property.UnidirResidualBW:
+			lsLink.UnidirResidualBw = proto.Uint32(document.UnidirResidualBW)
+		case property.UnidirAvailableBW:
+			lsLink.UnidirAvailableBw = proto.Uint32(document.UnidirAvailableBW)
+		case property.UnidirBWUtilization:
+			lsLink.UnidirBwUtilization = proto.Uint32(document.UnidirBWUtilization)
 		}
 	}
 

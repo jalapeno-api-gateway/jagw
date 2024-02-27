@@ -51,6 +51,12 @@ message LsLink {
 	optional string remote_igp_router_id = 22;
 	optional uint32 unidir_link_delay = 23;
 	repeated uint32 unidir_link_delay_min_max = 24;
+	optional uint64 max_link_bw_kbps = 25;
+	optional uint32 unidir_delay_variation = 26;
+	optional float unidir_packet_loss = 27;
+	optional uint32 unidir_residual_bw = 28;
+	optional uint32 unidir_available_bw = 29;
+	optional uint32 unidir_bw_utilization = 30;
 }
 
 message LsPrefix {

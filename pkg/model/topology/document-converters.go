@@ -59,6 +59,12 @@ func ConvertLsLink(doc arango.LSLink) LsLink {
 		RemoteIgpRouterId:     doc.RemoteIGPRouterID,
 		UnidirLinkDelay:       doc.UnidirLinkDelay,
 		UnidirLinkDelayMinMax: doc.UnidirLinkDelayMinMax,
+		MaxLinkBWKbps:         doc.MaxLinkBWKbps,
+		UnidirDelayVariation:  doc.UnidirDelayVariation,
+		UnidirPacketLoss:      doc.UnidirPacketLoss,
+		UnidirResidualBW:      doc.UnidirResidualBW,
+		UnidirAvailableBW:     doc.UnidirAvailableBW,
+		UnidirBWUtilization:   doc.UnidirBWUtilization,
 	}
 }
 
