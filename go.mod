@@ -43,7 +43,7 @@ require (
 )
 
 require (
-	github.com/jalapeno-api-gateway/jagw-go v1.3.5-beta
+	github.com/jalapeno-api-gateway/jagw-go v1.3.5
 	golang.org/x/sys v0.21.0 // indirect
 	google.golang.org/grpc v1.64.0
 )
