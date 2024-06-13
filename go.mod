@@ -1,6 +1,6 @@
 module github.com/jalapeno-api-gateway/jagw
 
-go 1.21.10
+go 1.21
 
 require (
 	github.com/IBM/sarama v1.43.2
