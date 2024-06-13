@@ -1,4 +1,4 @@
-FROM golang:1.18 AS build_base
+FROM golang:1.21 AS build_base
 
 ARG SERVICE_NAME
 
