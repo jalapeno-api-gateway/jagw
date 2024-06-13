@@ -44,12 +44,15 @@ var AllLsLinkProperties = []string{
 	RemoteIgpRouterId,
 	UnidirLinkDelay,
 	UnidirLinkDelayMinMax,
-	MaxLinkBWKbps,
+	MaxLinkBwKbps,
 	UnidirDelayVariation,
 	UnidirPacketLoss,
-	UnidirResidualBW,
-	UnidirAvailableBW,
-	UnidirBWUtilization,
+	UnidirResidualBw,
+	UnidirAvailableBw,
+	UnidirBwUtilization,
+	NormalizedUnidirLinkDelay,
+	NormalizedUnidirDelayVariation,
+	NormalizedUnidirPacketLoss,
 }
 
 var AllLsPrefixProperties = []string{

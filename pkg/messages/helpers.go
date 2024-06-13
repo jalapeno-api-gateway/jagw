@@ -3,7 +3,7 @@ package messages
 import (
 	"encoding/json"
 
-	"github.com/Shopify/sarama"
+	"github.com/IBM/sarama"
 	"github.com/jalapeno-api-gateway/jagw/pkg/model/class"
 	"github.com/sirupsen/logrus"
 )

@@ -124,18 +124,24 @@ func convertLsLink(doc interface{}, properties []string) *jagw.LsLink {
 			lsLink.UnidirLinkDelay = proto.Uint32(document.UnidirLinkDelay)
 		case property.UnidirLinkDelayMinMax:
 			lsLink.UnidirLinkDelayMinMax = document.UnidirLinkDelayMinMax
-		case property.MaxLinkBWKbps:
-			lsLink.MaxLinkBwKbps = proto.Uint64(document.MaxLinkBWKbps)
+		case property.MaxLinkBwKbps:
+			lsLink.MaxLinkBwKbps = proto.Uint64(document.MaxLinkBwKbps)
 		case property.UnidirDelayVariation:
 			lsLink.UnidirDelayVariation = proto.Uint32(document.UnidirDelayVariation)
 		case property.UnidirPacketLoss:
 			lsLink.UnidirPacketLoss = proto.Float32(document.UnidirPacketLoss)
-		case property.UnidirResidualBW:
-			lsLink.UnidirResidualBw = proto.Uint32(document.UnidirResidualBW)
-		case property.UnidirAvailableBW:
-			lsLink.UnidirAvailableBw = proto.Uint32(document.UnidirAvailableBW)
-		case property.UnidirBWUtilization:
-			lsLink.UnidirBwUtilization = proto.Uint32(document.UnidirBWUtilization)
+		case property.UnidirResidualBw:
+			lsLink.UnidirResidualBw = proto.Uint32(document.UnidirResidualBw)
+		case property.UnidirAvailableBw:
+			lsLink.UnidirAvailableBw = proto.Uint32(document.UnidirAvailableBw)
+		case property.UnidirBwUtilization:
+			lsLink.UnidirBwUtilization = proto.Uint32(document.UnidirBwUtilization)
+		case property.NormalizedUnidirLinkDelay:
+			lsLink.NormalizedUnidirLinkDelay = proto.Float64(document.NormalizedUnidirLinkDelay)
+		case property.NormalizedUnidirDelayVariation:
+			lsLink.NormalizedUnidirDelayVariation = proto.Float64(document.NormalizedUnidirDelayVariation)
+		case property.NormalizedUnidirPacketLoss:
+			lsLink.NormalizedUnidirPacketLoss = proto.Float64(document.NormalizedUnidirPacketLoss)
 		}
 	}
 
