@@ -30,34 +30,37 @@ type LsNodeCoordinates struct {
 }
 
 type LsLink struct {
-	Id                    string
-	Key                   string
-	RouterHash            string
-	RouterIp              string
-	DomainId              int64
-	PeerHash              string
-	PeerIp                string
-	PeerAsn               int32
-	Timestamp             string
-	IgpRouterId           string
-	Protocol              string
-	AreaId                string
-	Nexthop               string
-	Mtid                  *MultiTopologyIdentifier
-	LocalLinkIp           string
-	RemoteLinkIp          string
-	IgpMetric             uint32
-	RemoteNodeHash        string
-	LocalNodeHash         string
-	RemoteIgpRouterId     string
-	UnidirLinkDelay       uint32
-	UnidirLinkDelayMinMax []uint32
-	MaxLinkBWKbps         uint64
-	UnidirDelayVariation  uint32
-	UnidirPacketLoss      float32
-	UnidirResidualBW      uint32
-	UnidirAvailableBW     uint32
-	UnidirBWUtilization   uint32
+	Id                             string
+	Key                            string
+	RouterHash                     string
+	RouterIp                       string
+	DomainId                       int64
+	PeerHash                       string
+	PeerIp                         string
+	PeerAsn                        int32
+	Timestamp                      string
+	IgpRouterId                    string
+	Protocol                       string
+	AreaId                         string
+	Nexthop                        string
+	Mtid                           *MultiTopologyIdentifier
+	LocalLinkIp                    string
+	RemoteLinkIp                   string
+	IgpMetric                      uint32
+	RemoteNodeHash                 string
+	LocalNodeHash                  string
+	RemoteIgpRouterId              string
+	UnidirLinkDelay                uint32
+	UnidirLinkDelayMinMax          []uint32
+	MaxLinkBwKbps                  uint64
+	UnidirDelayVariation           uint32
+	UnidirPacketLoss               float32
+	UnidirResidualBw               uint32
+	UnidirAvailableBw              uint32
+	UnidirBwUtilization            uint32
+	NormalizedUnidirLinkDelay      float64
+	NormalizedUnidirDelayVariation float64
+	NormalizedUnidirPacketLoss     float64
 }
 
 type LsPrefix struct {

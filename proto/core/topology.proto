@@ -57,6 +57,9 @@ message LsLink {
 	optional uint32 unidir_residual_bw = 28;
 	optional uint32 unidir_available_bw = 29;
 	optional uint32 unidir_bw_utilization = 30;
+	optional double normalized_unidir_link_delay = 31;
+	optional double normalized_unidir_delay_variation = 32;
+	optional double normalized_unidir_packet_loss = 33;
 }
 
 message LsPrefix {
