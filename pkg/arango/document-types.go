@@ -12,7 +12,7 @@ type LsNode struct {
 	message.LSNode
 }
 
-func (node *LsNode) MarshalBinary() ([]byte, error) {
+func (node LsNode) MarshalBinary() ([]byte, error) {
 	return json.Marshal(node)
 }
 
@@ -25,7 +25,7 @@ type LsLink struct {
 	NormalizedUnidirPacketLoss     float64 `json:"normalized_unidir_packet_loss,omitempty"`
 }
 
-func (link *LsLink) MarshalBinary() ([]byte, error) {
+func (link LsLink) MarshalBinary() ([]byte, error) {
 	return json.Marshal(link)
 }
 
@@ -33,7 +33,7 @@ type LsPrefix struct {
 	message.LSPrefix
 }
 
-func (prefix *LsPrefix) MarshalBinary() ([]byte, error) {
+func (prefix LsPrefix) MarshalBinary() ([]byte, error) {
 	return json.Marshal(prefix)
 }
 
@@ -41,7 +41,7 @@ type LsSrv6Sid struct {
 	message.LSSRv6SID
 }
 
-func (srv6sid *LsSrv6Sid) MarshalBinary() ([]byte, error) {
+func (srv6sid LsSrv6Sid) MarshalBinary() ([]byte, error) {
 	return json.Marshal(srv6sid)
 }
 
@@ -53,7 +53,7 @@ type LsNodeEdge struct {
 	Link string `json:"link,omitempty"`
 }
 
-func (edge *LsNodeEdge) MarshalBinary() ([]byte, error) {
+func (edge LsNodeEdge) MarshalBinary() ([]byte, error) {
 	return json.Marshal(edge)
 }
 
@@ -65,6 +65,6 @@ type LsNodeCoordinates struct {
 	Longitude float64 `json:"longitude,omitempty"`
 }
 
-func (coordinates *LsNodeCoordinates) MarshalBinary() ([]byte, error) {
+func (coordinates LsNodeCoordinates) MarshalBinary() ([]byte, error) {
 	return json.Marshal(coordinates)
 }
