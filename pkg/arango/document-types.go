@@ -19,7 +19,6 @@ func (node LsNode) MarshalBinary() ([]byte, error) {
 type LsLink struct {
 	message.LSLink
 	UnidirPacketLossPercentage     float64 `json:"undir_packet_loss_percentage,omitempty"`
-	MaxLinkBwKbps                  uint32  `json:"max_link_bw_kbps,omitempty"`
 	NormalizedUnidirLinkDelay      float64 `json:"normalized_unidir_link_delay,omitempty"`
 	NormalizedUnidirDelayVariation float64 `json:"normalized_unidir_delay_variation,omitempty"`
 	NormalizedUnidirPacketLoss     float64 `json:"normalized_unidir_packet_loss,omitempty"`
