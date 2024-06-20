@@ -96,7 +96,7 @@ func convertLsLinkEvent(event messages.TopologyEvent) *jagw.LsLinkEvent {
 		NormalizedUnidirLinkDelay:      proto.Float64(document.NormalizedUnidirLinkDelay),
 		NormalizedUnidirDelayVariation: proto.Float64(document.NormalizedUnidirDelayVariation),
 		NormalizedUnidirPacketLoss:     proto.Float64(document.NormalizedUnidirPacketLoss),
-		UndirPacketLossPercentage:      proto.Float64(document.UnidirPacketLossPercentage),
+		UnidirPacketLossPercentage:     proto.Float64(document.UnidirPacketLossPercentage),
 		Rev:                            proto.String(document.Rev),
 		PeerType:                       proto.Uint32(uint32(document.PeerType)),
 		ProtocolId:                     proto.Uint32(uint32(document.ProtocolID)),

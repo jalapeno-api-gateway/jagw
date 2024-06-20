@@ -67,7 +67,7 @@ message LsLink {
 	optional double normalized_unidir_link_delay = 31;
 	optional double normalized_unidir_delay_variation = 32;
 	optional double normalized_unidir_packet_loss = 33;
-	optional double undir_packet_loss_percentage = 34;
+	optional double unidir_packet_loss_percentage = 34;
 	optional string rev = 35;
 	optional uint32 peer_type = 36; // protobuf does not support uint8
 	optional uint32 protocol_id = 37; // protobuf does not support uint8

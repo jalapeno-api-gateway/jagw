@@ -1,11 +1,19 @@
 package arango
 
-import "github.com/sbezverk/gobmp/pkg/message"
+import (
+	"encoding/json"
+
+	"github.com/sbezverk/gobmp/pkg/message"
+)
 
 // Information on Collections is taken from here:
 // // https://github.com/sbezverk/gobmp/blob/master/pkg/message/types.go
 type LsNode struct {
 	message.LSNode
+}
+
+func (node *LsNode) MarshalBinary() ([]byte, error) {
+	return json.Marshal(node)
 }
 
 type LsLink struct {
@@ -17,12 +25,24 @@ type LsLink struct {
 	NormalizedUnidirPacketLoss     float64 `json:"normalized_unidir_packet_loss,omitempty"`
 }
 
+func (link *LsLink) MarshalBinary() ([]byte, error) {
+	return json.Marshal(link)
+}
+
 type LsPrefix struct {
 	message.LSPrefix
 }
 
+func (prefix *LsPrefix) MarshalBinary() ([]byte, error) {
+	return json.Marshal(prefix)
+}
+
 type LsSrv6Sid struct {
 	message.LSSRv6SID
+}
+
+func (srv6sid *LsSrv6Sid) MarshalBinary() ([]byte, error) {
+	return json.Marshal(srv6sid)
 }
 
 type LsNodeEdge struct {
@@ -33,10 +53,18 @@ type LsNodeEdge struct {
 	Link string `json:"link,omitempty"`
 }
 
+func (edge *LsNodeEdge) MarshalBinary() ([]byte, error) {
+	return json.Marshal(edge)
+}
+
 type LsNodeCoordinates struct {
 	Key       string  `json:"_key,omitempty"`
 	ID        string  `json:"_id,omitempty"`
 	LsNodeKey string  `json:"ls_node_key,omitempty"`
 	Latitude  float64 `json:"latitude,omitempty"`
 	Longitude float64 `json:"longitude,omitempty"`
+}
+
+func (coordinates *LsNodeCoordinates) MarshalBinary() ([]byte, error) {
+	return json.Marshal(coordinates)
 }
