@@ -9,7 +9,7 @@ require (
 	github.com/google/uuid v1.6.0
 	github.com/influxdata/influxdb1-client v0.0.0-20220302092344-a9ab5670611c
 	github.com/influxdata/line-protocol v0.0.0-20210922203350-b1ad95c89adf
-	github.com/jalapeno-api-gateway/jagw-go v0.0.0-00010101000000-000000000000
+	github.com/jalapeno-api-gateway/jagw-go v1.4.0-beta
 	github.com/nqd/flat v0.2.0
 	github.com/sbezverk/gobmp v1.0.3-0.20230414141753-29b5fa2e1103
 	github.com/sirupsen/logrus v1.9.3
@@ -47,9 +47,6 @@ require (
 )
 
 require (
-	// github.com/jalapeno-api-gateway/jagw-go v1.3.5 // TODO adjust to the correct version
 	golang.org/x/sys v0.21.0 // indirect
 	google.golang.org/grpc v1.64.0
 )
-
-// replace github.com/jalapeno-api-gateway/jagw-go => ../jagw-go // TODO remove this line

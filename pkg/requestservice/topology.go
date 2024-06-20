@@ -3,11 +3,8 @@ package requestservice
 import (
 	"github.com/jalapeno-api-gateway/jagw-go/jagw"
 	"github.com/jalapeno-api-gateway/jagw/pkg/arango"
+	"github.com/jalapeno-api-gateway/jagw/pkg/helpers"
 	"github.com/jalapeno-api-gateway/jagw/pkg/model/property"
-	"github.com/jalapeno-api-gateway/jagw/pkg/model/topology"
-	"github.com/sbezverk/gobmp/pkg/base"
-	"github.com/sbezverk/gobmp/pkg/bgpls"
-	"github.com/sbezverk/gobmp/pkg/srv6"
 	"github.com/sirupsen/logrus"
 	"google.golang.org/protobuf/proto"
 )
@@ -45,7 +42,7 @@ func convertLsNode(logger *logrus.Entry, doc interface{}, properties []string) *
 		case property.Asn:
 			lsNode.Asn = proto.Uint32(document.ASN)
 		case property.Mtid:
-			lsNode.Mtid = convertMtidSlice(document.MTID)
+			lsNode.Mtid = helpers.ConvertMtidSlice(document.MTID)
 		case property.AreaId:
 			lsNode.AreaId = proto.String(document.AreaID)
 		case property.Protocol:
@@ -59,17 +56,17 @@ func convertLsNode(logger *logrus.Entry, doc interface{}, properties []string) *
 		case property.PeerType:
 			lsNode.PeerType = proto.Uint32(uint32(document.PeerType))
 		case property.SrAlgorithm:
-			lsNode.SrAlgorithm = document.SRAlgorithm
+			helpers.ConvertSrAlgorithm(document.SRAlgorithm)
 		case property.Srv6CapabilitiesTlv:
-			lsNode.Srv6CapabilitiesTlv = convertSrv6CapabilitiesTlv(document.SRv6CapabilitiesTLV)
+			lsNode.Srv6CapabilitiesTlv = helpers.ConvertSrv6CapabilitiesTlv(document.SRv6CapabilitiesTLV)
 		case property.NodeMsd:
-			lsNode.NodeMsd = convertNodeMsd(document.NodeMSD)
+			lsNode.NodeMsd = helpers.ConvertNodeMsd(document.NodeMSD)
 		case property.FlexAlgoDefinition:
-			lsNode.FlexAlgoDefinition = convertFlexAlgoDefinition(document.FlexAlgoDefinition)
-		case property.IsAdjRibInPost:
-			lsNode.IsAdjRibInPost = proto.Bool(document.IsAdjRIBInPost)
-		case property.IsAdjRibOutPost:
-			lsNode.IsAdjRibOutPost = proto.Bool(document.IsAdjRIBOutPost)
+			lsNode.FlexAlgoDefinition = helpers.ConvertFlexAlgoDefinition(document.FlexAlgoDefinition)
+		case property.IsAdjRibInPostPolicy:
+			lsNode.IsAdjRibInPostPolicy = proto.Bool(document.IsAdjRIBInPost)
+		case property.IsAdjRibOutPostPolicy:
+			lsNode.IsAdjRibOutPostPolicy = proto.Bool(document.IsAdjRIBOutPost)
 		case property.IsLocRibFiltered:
 			lsNode.IsLocRibFiltered = proto.Bool(document.IsLocRIBFiltered)
 		}
@@ -77,38 +74,6 @@ func convertLsNode(logger *logrus.Entry, doc interface{}, properties []string) *
 	return &lsNode
 }
 
-func convertSrv6CapabilitiesTlv(srv6CapabilitiesTLV *srv6.CapabilityTLV) *jagw.Srv6CapabilitiesTlv {
-	return &jagw.Srv6CapabilitiesTlv{
-		OFlag: proto.Bool(srv6CapabilitiesTLV.OFlag),
-	}
-}
-
-func convertNodeMsd(nodeMsd []*base.MSDTV) *jagw.NodeMsd {
-	jagwNodeMsds := []*jagw.NodeMsd{}
-	for _, msd := range nodeMsd {
-		jagwNodeMsd := &jagw.NodeMsd{
-			Type:  proto.Uint32(uint32(msd.Type)),
-			Value: proto.Uint32(uint32(msd.Value)),
-		}
-		jagwNodeMsds = append(jagwNodeMsds, jagwNodeMsd)
-	}
-	return jagwNodeMsds
-}
-
-func convertFlexAlgoDefinition(flexAlgoDefinition []*bgpls.FlexAlgoDefinition) *jagw.FlexAlgoDefinition {
-	flexAlgorithms := []*jagw.FlexAlgoDefinition{}
-	for _, definition := range flexAlgoDefinition {
-
-		flexAlgo := &jagw.FlexAlgoDefinition{
-			FlexAlgorithm:   proto.Uint32(uint32(definition.FlexAlgorithm)),
-			MetricType:      proto.Uint32(uint32(definition.MetricType)),
-			CalculationType: proto.Uint32(uint32(definition.CalculationType)),
-			Priority:        proto.Uint32(uint32(definition.Priority)),
-		}
-		flexAlgorithms = append(flexAlgorithms, flexAlgo)
-	}
-	return flexAlgorithms
-}
 func convertLsNodeCoordinates(doc interface{}) *jagw.LsNodeCoordinates {
 	document := doc.(arango.LsNodeCoordinates)
 	return &jagw.LsNodeCoordinates{
@@ -156,7 +121,7 @@ func convertLsLink(doc interface{}, properties []string) *jagw.LsLink {
 		case property.Nexthop:
 			lsLink.Nexthop = proto.String(document.Nexthop)
 		case property.Mtid:
-			lsLink.Mtid = convertMtid(document.MTID)
+			lsLink.Mtid = helpers.ConvertMtid(document.MTID)
 		case property.LocalLinkId:
 			lsLink.LocalLinkId = proto.Uint32(document.LocalLinkID)
 		case property.RemoteLinkId:
@@ -206,10 +171,10 @@ func convertLsLink(doc interface{}, properties []string) *jagw.LsLink {
 		case property.RemoteNodeAsn:
 			lsLink.RemoteNodeAsn = proto.Uint32(document.RemoteNodeASN)
 		case property.Srv6EndxSid:
-			lsLink.Srv6EndxSid = convertSrv6EndXSid(document.SRv6ENDXSID)
-		case property.IsAdjRibInPost:
+			lsLink.Srv6EndxSid = helpers.ConvertSrv6EndXSid(document.SRv6ENDXSID)
+		case property.IsAdjRibInPostPolicy:
 			lsLink.IsAdjRibInPost = proto.Bool(document.IsAdjRIBInPost)
-		case property.IsAdjRibOutPost:
+		case property.IsAdjRibOutPostPolicy:
 			lsLink.IsAdjRibOutPost = proto.Bool(document.IsAdjRIBOutPost)
 		case property.IsLocRibFiltered:
 			lsLink.IsLocRibFiltered = proto.Bool(document.IsLocRIBFiltered)
@@ -217,31 +182,6 @@ func convertLsLink(doc interface{}, properties []string) *jagw.LsLink {
 	}
 
 	return &lsLink
-}
-
-func convertSrv6EndXSidFlags(flags *srv6.EndXSIDFlags) *jagw.Srv6EndxSidFlags {
-	return &jagw.Srv6EndxSidFlags{
-		BFlag: proto.Bool(flags.BFlag),
-		SFlag: proto.Bool(flags.SFlag),
-		PFlag: proto.Bool(flags.PFlag),
-	}
-}
-
-func convertSrv6EndXSid(srv6EndXSID []*srv6.EndXSIDTLV) *jagw.Srv6EndxSid {
-	srv6EndXSIDs := []*jagw.Srv6EndxSid{}
-	for _, srv6EndXSID := range srv6EndXSID {
-		srv6EndX := &jagw.Srv6EndxSid{
-			Type:             proto.Uint32(uint32(srv6EndXSID.Type)),
-			Length:           proto.Uint32(uint32(srv6EndXSID.Length)),
-			EndpointBehavior: proto.Uint32(uint32(srv6EndXSID.EndpointBehavior)),
-			Algorithm:        proto.Uint32(uint32(srv6EndXSID.Algorithm)),
-			Weight:           proto.Uint32(uint32(srv6EndXSID.Weight)),
-			Sid:              proto.String(srv6EndXSID.SID),
-			Flags:            convertSrv6EndXSidFlags(srv6EndXSID.Flags),
-		}
-		srv6EndXSIDs = append(srv6EndXSIDs, srv6EndX)
-	}
-	return srv6EndXSIDs
 }
 
 func convertLsPrefix(doc interface{}, properties []string) *jagw.LsPrefix {
@@ -269,7 +209,7 @@ func convertLsPrefix(doc interface{}, properties []string) *jagw.LsPrefix {
 		case property.PeerIp:
 			lsPrefix.PeerIp = proto.String(document.PeerIP)
 		case property.PeerAsn:
-			lsPrefix.PeerAsn = proto.Int32(int32(document.PeerASN))
+			lsPrefix.PeerAsn = proto.Uint32(document.PeerASN)
 		case property.Timestamp:
 			lsPrefix.Timestamp = proto.String(document.Timestamp)
 		case property.IgpRouterId:
@@ -283,7 +223,7 @@ func convertLsPrefix(doc interface{}, properties []string) *jagw.LsPrefix {
 		case property.LocalNodeHash:
 			lsPrefix.LocalNodeHash = proto.String(document.LocalNodeHash)
 		case property.Mtid:
-			lsPrefix.Mtid = convertMtid(document.MTID)
+			lsPrefix.Mtid = helpers.ConvertMtid(document.MTID)
 		case property.Prefix:
 			lsPrefix.Prefix = proto.String(document.Prefix)
 		case property.PrefixLen:
@@ -297,10 +237,10 @@ func convertLsPrefix(doc interface{}, properties []string) *jagw.LsPrefix {
 		case property.ProtocolId:
 			lsPrefix.ProtocolId = proto.Uint32(uint32(document.ProtocolID))
 		case property.Srv6Locator:
-			lsPrefix.Srv6Locator = convertSrv6Locator(document.SRv6Locator)
-		case property.IsAdjRibInPost:
+			lsPrefix.Srv6Locator = helpers.ConvertSrv6Locator(document.SRv6Locator)
+		case property.IsAdjRibInPostPolicy:
 			lsPrefix.IsAdjRibInPost = proto.Bool(document.IsAdjRIBInPost)
-		case property.IsAdjRibOutPost:
+		case property.IsAdjRibOutPostPolicy:
 			lsPrefix.IsAdjRibOutPost = proto.Bool(document.IsAdjRIBOutPost)
 		case property.IsLocRibFiltered:
 			lsPrefix.IsLocRibFiltered = proto.Bool(document.IsLocRIBFiltered)
@@ -308,20 +248,6 @@ func convertLsPrefix(doc interface{}, properties []string) *jagw.LsPrefix {
 	}
 
 	return &lsPrefix
-}
-
-func convertLocatorFlags(flags *srv6.LocatorFlags) *jagw.LocatorFlags {
-	return &jagw.LocatorFlags{
-		DFlag: proto.Bool(flags.DFlag),
-	}
-}
-
-func convertSrv6Locator(srv6Locator *srv6.LocatorTLV) *jagw.Srv6Locator {
-	return &jagw.Srv6LocatorTLV{
-		Flags:  convertLocatorFlags(srv6Locator.Flag),
-		Algo:   proto.Uint32(uint32(srv6Locator.Algorithm)),
-		Metric: proto.Uint32(srv6Locator.Metric),
-	}
 }
 
 func convertLsSrv6Sid(doc interface{}, properties []string) *jagw.LsSrv6Sid {
@@ -363,18 +289,18 @@ func convertLsSrv6Sid(doc interface{}, properties []string) *jagw.LsSrv6Sid {
 		case property.LocalNodeHash:
 			lsSRv6SID.LocalNodeHash = proto.String(document.LocalNodeHash)
 		case property.Mtid:
-			lsSRv6SID.Mtid = convertMtid(document.MTID)
+			lsSRv6SID.Mtid = helpers.ConvertMtid(document.MTID)
 		case property.IgpFlags:
 			lsSRv6SID.IgpFlags = proto.Uint32(uint32(document.IGPFlags))
 		case property.Srv6Sid:
 			lsSRv6SID.Srv6Sid = proto.String(document.SRv6SID)
 		case property.Srv6EndpointBehavior:
-			lsSRv6SID.Srv6EndpointBehavior = convertSrv6EndpointBehavior(document.SRv6EndpointBehavior)
+			lsSRv6SID.Srv6EndpointBehavior = helpers.ConvertSrv6EndpointBehavior(document.SRv6EndpointBehavior)
 		case property.Srv6SidStructure:
-			lsSRv6SID.Srv6SidStructure = convertSrv6SidStructure(document.SRv6SIDStructure)
-		case property.IsAdjRibInPost:
+			lsSRv6SID.Srv6SidStructure = helpers.ConvertSrv6SidStructure(document.SRv6SIDStructure)
+		case property.IsAdjRibInPostPolicy:
 			lsSRv6SID.IsAdjRibInPost = proto.Bool(document.IsAdjRIBInPost)
-		case property.IsAdjRibOutPost:
+		case property.IsAdjRibOutPostPolicy:
 			lsSRv6SID.IsAdjRibOutPost = proto.Bool(document.IsAdjRIBOutPost)
 		case property.IsLocRibFiltered:
 			lsSRv6SID.IsLocRibFiltered = proto.Bool(document.IsLocRIBFiltered)
@@ -384,27 +310,8 @@ func convertLsSrv6Sid(doc interface{}, properties []string) *jagw.LsSrv6Sid {
 	return &lsSRv6SID
 }
 
-func convertSrv6EndpointBehavior(srv6EndpointBehavior *srv6.EndpointBehavior) *jagw.Srv6EndpointBehavior {
-	return &jagw.Srv6EndpointBehavior{
-		EndpointBehavior: proto.Uint32(uint32(srv6EndpointBehavior.EndpointBehavior)),
-		Flag:             proto.Uint32(uint32(srv6EndpointBehavior.Flag)),
-		Algorithm:        proto.Uint32(uint32(srv6EndpointBehavior.Algorithm)),
-	}
-}
-
-func convertSrv6SidStructure(srv6SidStructure *srv6.SIDStructure) *jagw.Srv6SidStructure {
-	return &jagw.Srv6SidStructure{
-		Type:               proto.Uint32(uint32(srv6SidStructure.Type)),
-		Length:             proto.Uint32(uint32(srv6SidStructure.Length)),
-		LocatorBlockLength: proto.Uint32(uint32(srv6SidStructure.LBLength)),
-		LocatorNodeLength:  proto.Uint32(uint32(srv6SidStructure.LNLength)),
-		FunctionLength:     proto.Uint32(uint32(srv6SidStructure.FunLength)),
-		ArgumentLength:     proto.Uint32(uint32(srv6SidStructure.ArgLength)),
-	}
-}
-
 func convertLsNodeEdge(doc interface{}, properties []string) *jagw.LsNodeEdge {
-	document := doc.(topology.LsNodeEdge)
+	document := doc.(arango.LsNodeEdge)
 	lsNodeEdge := jagw.LsNodeEdge{Key: proto.String(document.Key)}
 
 	if len(properties) == 0 {
@@ -416,7 +323,7 @@ func convertLsNodeEdge(doc interface{}, properties []string) *jagw.LsNodeEdge {
 		case property.Key:
 			lsNodeEdge.Key = proto.String(document.Key)
 		case property.Id:
-			lsNodeEdge.Id = proto.String(document.Id)
+			lsNodeEdge.Id = proto.String(document.ID)
 		case property.From:
 			lsNodeEdge.From = proto.String(document.From)
 		case property.To:
@@ -427,20 +334,4 @@ func convertLsNodeEdge(doc interface{}, properties []string) *jagw.LsNodeEdge {
 	}
 
 	return &lsNodeEdge
-}
-
-func convertMtidSlice(documents []*topology.MultiTopologyIdentifier) []*jagw.MultiTopologyIdentifier {
-	mtids := []*jagw.MultiTopologyIdentifier{}
-	for _, doc := range documents {
-		mtids = append(mtids, convertMtid(doc))
-	}
-	return mtids
-}
-
-func convertMtid(doc *topology.MultiTopologyIdentifier) *jagw.MultiTopologyIdentifier {
-	return &jagw.MultiTopologyIdentifier{
-		OFlag: proto.Bool(doc.OFlag),
-		AFlag: proto.Bool(doc.AFlag),
-		Mtid:  proto.Uint32(uint32(doc.Mtid)),
-	}
 }

@@ -10,7 +10,7 @@ type LsNode struct {
 
 type LsLink struct {
 	message.LSLink
-	UnidirPacketLossPercentage     float32 `json:"undir_packet_loss_percentage,omitempty"`
+	UnidirPacketLossPercentage     float64 `json:"undir_packet_loss_percentage,omitempty"`
 	MaxLinkBwKbps                  uint32  `json:"max_link_bw_kbps,omitempty"`
 	NormalizedUnidirLinkDelay      float64 `json:"normalized_unidir_link_delay,omitempty"`
 	NormalizedUnidirDelayVariation float64 `json:"normalized_unidir_delay_variation,omitempty"`

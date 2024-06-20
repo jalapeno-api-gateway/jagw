@@ -23,8 +23,8 @@ var AllLsNodeProperties = []string{
 	Srv6CapabilitiesTlv,
 	NodeMsd,
 	FlexAlgoDefinition,
-	IsAdjRibInPost,
-	IsAdjRibOutPost,
+	IsAdjRibInPostPolicy,
+	IsAdjRibOutPostPolicy,
 	IsLocRibFiltered,
 }
 
@@ -69,8 +69,8 @@ var AllLsLinkProperties = []string{
 	NormalizedUnidirLinkDelay,
 	NormalizedUnidirDelayVariation,
 	NormalizedUnidirPacketLoss,
-	IsAdjRibInPost,
-	IsAdjRibOutPost,
+	IsAdjRibInPostPolicy,
+	IsAdjRibOutPostPolicy,
 	IsLocRibFiltered,
 }
 
@@ -97,8 +97,8 @@ var AllLsPrefixProperties = []string{
 	PrefixLen,
 	Srv6Locator,
 	PrefixMetric,
-	IsAdjRibInPost,
-	IsAdjRibOutPost,
+	IsAdjRibInPostPolicy,
+	IsAdjRibOutPostPolicy,
 	IsLocRibFiltered,
 }
 
@@ -125,8 +125,8 @@ var AllLsSrv6SidProperties = []string{
 	Srv6Sid,
 	Srv6EndpointBehavior,
 	Srv6SidStructure,
-	IsAdjRibInPost,
-	IsAdjRibOutPost,
+	IsAdjRibInPostPolicy,
+	IsAdjRibOutPostPolicy,
 	IsLocRibFiltered,
 }
 
