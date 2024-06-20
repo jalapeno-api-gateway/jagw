@@ -49,7 +49,7 @@ func ConvertSrv6CapabilitiesTlv(srv6CapabilitiesTLV *srv6.CapabilityTLV) *jagw.S
 }
 
 func ConvertNodeMsd(nodeMsd []*base.MSDTV) []*jagw.NodeMsd {
-	jagwNodeMsds := make([]*jagw.NodeMsd, 0, len(nodeMsd))
+	jagwNodeMsds := make([]*jagw.NodeMsd, len(nodeMsd))
 	for index, msd := range nodeMsd {
 		jagwNodeMsd := &jagw.NodeMsd{
 			MsdType:  proto.Uint32(uint32(msd.Type)),
@@ -61,7 +61,7 @@ func ConvertNodeMsd(nodeMsd []*base.MSDTV) []*jagw.NodeMsd {
 }
 
 func ConvertFlexAlgoDefinition(flexAlgoDefinition []*bgpls.FlexAlgoDefinition) []*jagw.FlexAlgoDefinition {
-	flexAlgorithms := make([]*jagw.FlexAlgoDefinition, 0, len(flexAlgoDefinition))
+	flexAlgorithms := make([]*jagw.FlexAlgoDefinition, len(flexAlgoDefinition))
 	for index, definition := range flexAlgoDefinition {
 		flexAlgo := &jagw.FlexAlgoDefinition{
 			FlexAlgo:        proto.Uint32(uint32(definition.FlexAlgorithm)),
@@ -83,7 +83,7 @@ func convertSrv6EndXSidFlags(flags *srv6.EndXSIDFlags) *jagw.Srv6EndXSidFlags {
 }
 
 func ConvertSrv6EndXSid(srv6EndXSID []*srv6.EndXSIDTLV) []*jagw.Srv6EndXSidTlv {
-	srv6EndXSIDs := make([]*jagw.Srv6EndXSidTlv, 0, len(srv6EndXSID))
+	srv6EndXSIDs := make([]*jagw.Srv6EndXSidTlv, len(srv6EndXSID))
 	for index, srv6EndXSID := range srv6EndXSID {
 		srv6EndX := &jagw.Srv6EndXSidTlv{
 			Type:             proto.Uint32(uint32(srv6EndXSID.Type)),
@@ -133,7 +133,7 @@ func ConvertSrv6SidStructure(srv6SidStructure *srv6.SIDStructure) *jagw.Srv6SidS
 }
 
 func ConvertMtidSlice(documents []*base.MultiTopologyIdentifier) []*jagw.MultiTopologyIdentifier {
-	mtids := make([]*jagw.MultiTopologyIdentifier, 0, len(documents))
+	mtids := make([]*jagw.MultiTopologyIdentifier, len(documents))
 	for index, doc := range documents {
 		mtids[index] = ConvertMtid(doc)
 	}
