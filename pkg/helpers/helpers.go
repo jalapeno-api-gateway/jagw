@@ -100,12 +100,18 @@ func ConvertSrv6EndXSid(srv6EndXSID []*srv6.EndXSIDTLV) []*jagw.Srv6EndXSidTlv {
 }
 
 func convertLocatorFlags(flags *srv6.LocatorFlags) *jagw.Srv6LocatorFlags {
+	if flags == nil {
+		return nil
+	}
 	return &jagw.Srv6LocatorFlags{
 		DFlag: proto.Bool(flags.DFlag),
 	}
 }
 
 func ConvertSrv6Locator(srv6Locator *srv6.LocatorTLV) *jagw.Srv6LocatorTlv {
+	if srv6Locator == nil {
+		return nil
+	}
 	return &jagw.Srv6LocatorTlv{
 		Flags:  convertLocatorFlags(srv6Locator.Flag),
 		Algo:   proto.Uint32(uint32(srv6Locator.Algorithm)),
@@ -114,6 +120,9 @@ func ConvertSrv6Locator(srv6Locator *srv6.LocatorTLV) *jagw.Srv6LocatorTlv {
 }
 
 func ConvertSrv6EndpointBehavior(srv6EndpointBehavior *srv6.EndpointBehavior) *jagw.Srv6EndpointBehavior {
+	if srv6EndpointBehavior == nil {
+		return nil
+	}
 	return &jagw.Srv6EndpointBehavior{
 		EndpointBehavior: proto.Uint32(uint32(srv6EndpointBehavior.EndpointBehavior)),
 		Flag:             proto.Uint32(uint32(srv6EndpointBehavior.Flag)),
@@ -122,6 +131,9 @@ func ConvertSrv6EndpointBehavior(srv6EndpointBehavior *srv6.EndpointBehavior) *j
 }
 
 func ConvertSrv6SidStructure(srv6SidStructure *srv6.SIDStructure) *jagw.Srv6SidStructure {
+	if srv6SidStructure == nil {
+		return nil
+	}
 	return &jagw.Srv6SidStructure{
 		Type:               proto.Uint32(uint32(srv6SidStructure.Type)),
 		Length:             proto.Uint32(uint32(srv6SidStructure.Length)),
@@ -135,12 +147,17 @@ func ConvertSrv6SidStructure(srv6SidStructure *srv6.SIDStructure) *jagw.Srv6SidS
 func ConvertMtidSlice(documents []*base.MultiTopologyIdentifier) []*jagw.MultiTopologyIdentifier {
 	mtids := make([]*jagw.MultiTopologyIdentifier, len(documents))
 	for index, doc := range documents {
-		mtids[index] = ConvertMtid(doc)
+		if doc != nil {
+			mtids[index] = ConvertMtid(doc)
+		}
 	}
 	return mtids
 }
 
 func ConvertMtid(doc *base.MultiTopologyIdentifier) *jagw.MultiTopologyIdentifier {
+	if doc == nil {
+		return nil
+	}
 	return &jagw.MultiTopologyIdentifier{
 		OFlag: proto.Bool(doc.OFlag),
 		AFlag: proto.Bool(doc.AFlag),

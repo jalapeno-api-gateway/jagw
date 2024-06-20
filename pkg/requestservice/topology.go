@@ -296,6 +296,12 @@ func convertLsSrv6Sid(doc interface{}, properties []string) *jagw.LsSrv6Sid {
 			lsSRv6SID.IgpFlags = proto.Uint32(uint32(document.IGPFlags))
 		case property.Srv6Sid:
 			lsSRv6SID.Srv6Sid = proto.String(document.SRv6SID)
+		case property.Rev:
+			lsSRv6SID.Rev = proto.String(document.Rev)
+		case property.PeerType:
+			lsSRv6SID.PeerType = proto.Uint32(uint32(document.PeerType))
+		case property.ProtocolId:
+			lsSRv6SID.ProtocolId = proto.Uint32(uint32(document.ProtocolID))
 		case property.Srv6EndpointBehavior:
 			lsSRv6SID.Srv6EndpointBehavior = helpers.ConvertSrv6EndpointBehavior(document.SRv6EndpointBehavior)
 		case property.Srv6SidStructure:
