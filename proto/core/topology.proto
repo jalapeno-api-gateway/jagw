@@ -13,7 +13,7 @@ message LsNode {
 	optional string router_ip = 5;
 	optional string peer_hash = 6;
 	optional string peer_ip = 7;
-	optional int32 peer_asn = 8;
+	optional uint32 peer_asn = 8;
 	optional string timestamp = 9;
 	optional string igp_router_id = 10;
 	optional uint32 asn = 11;
@@ -22,8 +22,15 @@ message LsNode {
 	optional string protocol = 14;
 	optional uint32 protocol_id = 15; // protobuf does not support uint8
 	optional string name = 16;
-	optional bool is_prepolicy = 17;
-	optional bool is_adj_rib_in = 18;
+	optional string rev = 17;
+	optional uint32 peer_type = 18; // protobuf does not support uint8
+	repeated int32 sr_algorithm = 19; 
+	optional Srv6CapabilitiesTlv srv6_capabilities_tlv = 20;
+	repeated NodeMsd node_msd = 21;	
+	repeated FlexAlgoDefinition flex_algo_definition = 22;
+	optional bool is_adj_rib_in_post_policy = 23;
+	optional bool is_adj_rib_out_post_policy = 24;
+	optional bool is_loc_rib_filtered = 25;
 }
 
 message LsLink {
@@ -34,15 +41,15 @@ message LsLink {
 	optional int64 domain_id = 5;
 	optional string peer_hash = 6;
 	optional string peer_ip = 7;
-	optional int32 peer_asn = 8;
+	optional uint32 peer_asn = 8;
 	optional string timestamp = 9;
 	optional string igp_router_id = 10;
 	optional string protocol = 11;
 	optional string area_id = 12;
 	optional string nexthop = 13;
 	optional MultiTopologyIdentifier mtid = 14;
-	optional string local_link_id = 15;
-	optional string remote_link_id = 16;
+	optional uint32 local_link_id = 15;
+	optional uint32 remote_link_id = 16;
 	optional string local_link_ip = 17;
 	optional string remote_link_ip = 18;
 	optional uint32 igp_metric = 19;
@@ -53,13 +60,23 @@ message LsLink {
 	repeated uint32 unidir_link_delay_min_max = 24;
 	optional uint64 max_link_bw_kbps = 25;
 	optional uint32 unidir_delay_variation = 26;
-	optional float unidir_packet_loss = 27;
+	optional uint32 unidir_packet_loss = 27;
 	optional uint32 unidir_residual_bw = 28;
 	optional uint32 unidir_available_bw = 29;
 	optional uint32 unidir_bw_utilization = 30;
 	optional double normalized_unidir_link_delay = 31;
 	optional double normalized_unidir_delay_variation = 32;
 	optional double normalized_unidir_packet_loss = 33;
+	optional double undir_packet_loss_percentage = 34;
+	optional string rev = 35;
+	optional uint32 peer_type = 36; // protobuf does not support uint8
+	optional uint32 protocol_id = 37; // protobuf does not support uint8
+	optional uint32 local_node_asn = 38;
+	optional uint32 remote_node_asn = 39;
+	repeated Srv6EndXSidTlv srv6_endx_sid = 40;
+	optional bool is_adj_rib_in_post = 41;
+	optional bool is_aj_rib_out_post = 42;
+	optional bool is_loc_rib_filtered = 43;
 }
 
 message LsPrefix {
@@ -70,7 +87,7 @@ message LsPrefix {
 	optional int64 domain_id = 5;
 	optional string peer_hash = 6;
 	optional string peer_ip = 7;
-	optional int32 peer_asn = 8;
+	optional uint32 peer_asn = 8;
 	optional string timestamp = 9;
 	optional string igp_router_id = 10;
 	optional string protocol = 11;
@@ -81,8 +98,13 @@ message LsPrefix {
 	optional string prefix = 16;
 	optional int32 prefix_len = 17;
 	optional uint32 prefix_metric = 18;
-	optional bool is_prepolicy = 19;
-	optional bool is_adj_rib_in = 20;
+	optional bool rev = 19;
+	optional uint32 peer_type = 20; // protobuf does not support uint8
+	optional uint32 protocol_id = 21; // protobuf does not support uint8
+	optional Srv6LocatorTlv srv6_locator = 22;
+	optional bool is_adj_rib_in_post = 23;
+	optional bool is_aj_rib_out_post = 24;
+	optional bool is_loc_rib_filtered = 25;
 }
 
 message LsSrv6Sid {
@@ -93,7 +115,7 @@ message LsSrv6Sid {
 	optional int64 domain_id = 5;
 	optional string peer_hash = 6;
 	optional string peer_ip = 7;
-	optional int32 peer_asn = 8;
+	optional uint32 peer_asn = 8;
 	optional string timestamp = 9;
 	optional string igp_router_id = 10;
 	optional uint32 local_node_asn = 11;
@@ -102,9 +124,15 @@ message LsSrv6Sid {
 	optional string local_node_hash = 14;
 	optional MultiTopologyIdentifier mtid = 15;
 	optional uint32 igp_flags = 16; // protobuf does not support uint8
-	optional bool is_prepolicy = 17;
-	optional bool is_adj_rib_in = 18;
-	optional string srv6_sid = 19;
+	optional string srv6_sid = 17;
+	optional string rev = 18;
+	optional uint32 peer_type = 19; // protobuf does not support uint8
+	optional uint32 protocol_id = 20; // protobuf does not support uint8
+	optional Srv6EndpointBehavior srv6_endpoint_behavior = 21;
+	optional Srv6SidStructure srv6_sid_structure = 22;
+	optional bool is_adj_rib_in_post = 23;
+	optional bool is_aj_rib_out_post = 24;
+	optional bool is_loc_rib_filtered = 25;
 }
 
 message LsNodeEdge {

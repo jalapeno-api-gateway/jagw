@@ -8,3 +8,60 @@ message MultiTopologyIdentifier {
     required bool a_flag = 2;
     required uint32 mtid = 3; // protobuf does not support uint16
 }
+
+message Srv6CapabilitiesTlv {    
+    required bool o_flag = 1;
+}
+
+message NodeMsd {
+    required uint32 msd_type = 1; // protobuf does not support uint8
+    required uint32 msd_value = 2; // protobuf does not support uint8
+}
+
+message FlexAlgoDefinition {
+    required uint32 flex_algo = 1; // protobuf does not support uint8
+    required uint32 metric_type = 2; // protobuf does not support uint8
+    required uint32 calculation_type = 3; // protobuf does not support uint8
+    required uint32 priority = 4; // protobuf does not support uint8
+}
+
+message Srv6EndXSidFlags {
+    required bool b_flag = 1;
+    required bool s_flag = 2;
+    required bool p_flag = 3;
+}
+
+message Srv6EndXSidTlv {
+    optional uint32 type = 1; // protobuf does not support uint16
+    optional uint32 length = 2; // protobuf does not support uint16
+    required uint32 endpoint_behavior = 3; // protobuf does not support uint16
+    optional Srv6EndXSidFlags flags = 4;
+    required uint32 algorithm = 5; // protobuf does not support uint8
+    required uint32 weight = 6; // protobuf does not support uint8
+    optional string sid = 7;
+}
+
+
+message Srv6LocatorFlags {
+    required bool d_flag = 1;
+}
+message Srv6LocatorTlv {
+    optional Srv6LocatorFlags flags = 1;
+    required uint32 algo = 2; // protobuf does not support uint8
+    required uint32 metric = 3;
+}
+
+message Srv6EndpointBehavior {
+    required uint32 endpoint_behavior = 1; // protobuf does not support uint16
+    required uint32 flag = 2; // protobuf does not support uint8
+    required uint32 algorithm = 3; // protobuf does not support uint8
+}
+
+message Srv6SidStructure {
+    optional uint32 type = 1; // protobuf does not support uint16
+    optional uint32 length = 2; // protobuf does not support uint16
+    required uint32 locator_block_length = 3; // protobuf does not support uint8
+    required uint32 locator_node_length = 4; // protobuf does not support uint8
+    required uint32 function_length = 5; // protobuf does not support uint8
+    required uint32 argument_length = 6; // protobuf does not support uint8
+}

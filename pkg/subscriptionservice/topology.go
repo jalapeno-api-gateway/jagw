@@ -8,7 +8,7 @@ import (
 )
 
 func convertLsNodeEvent(event messages.TopologyEvent) *jagw.LsNodeEvent {
-	document := event.Document.(arango.LSNode)
+	document := event.Document.(arango.LsNode)
 
 	response := &jagw.LsNodeEvent{
 		Action: proto.String(event.Action),
@@ -44,7 +44,7 @@ func convertLsNodeEvent(event messages.TopologyEvent) *jagw.LsNodeEvent {
 }
 
 func convertLsLinkEvent(event messages.TopologyEvent) *jagw.LsLinkEvent {
-	document := event.Document.(arango.LSLink)
+	document := event.Document.(arango.LsLink)
 
 	response := &jagw.LsLinkEvent{
 		Action: proto.String(event.Action),
@@ -93,7 +93,7 @@ func convertLsLinkEvent(event messages.TopologyEvent) *jagw.LsLinkEvent {
 }
 
 func convertLsPrefixEvent(event messages.TopologyEvent) *jagw.LsPrefixEvent {
-	document := event.Document.(arango.LSPrefix)
+	document := event.Document.(arango.LsPrefix)
 
 	response := &jagw.LsPrefixEvent{
 		Action: proto.String(event.Action),
@@ -131,7 +131,7 @@ func convertLsPrefixEvent(event messages.TopologyEvent) *jagw.LsPrefixEvent {
 }
 
 func convertLsSrv6SidEvent(event messages.TopologyEvent) *jagw.LsSrv6SidEvent {
-	document := event.Document.(arango.LSSRv6SID)
+	document := event.Document.(arango.LsSrv6Sid)
 
 	response := &jagw.LsSrv6SidEvent{
 		Action: proto.String(event.Action),
@@ -168,7 +168,7 @@ func convertLsSrv6SidEvent(event messages.TopologyEvent) *jagw.LsSrv6SidEvent {
 }
 
 func convertLsNodeEdgeEvent(event messages.TopologyEvent) *jagw.LsNodeEdgeEvent {
-	document := event.Document.(arango.LSNode_Edge)
+	document := event.Document.(arango.LsNodeEdge)
 	response := &jagw.LsNodeEdgeEvent{
 		Action: proto.String(event.Action),
 		Key:    proto.String(event.Key),

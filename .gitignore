@@ -6,3 +6,4 @@ out
 .docusaurus
 node_modules
 okteto.yml
+go.work*

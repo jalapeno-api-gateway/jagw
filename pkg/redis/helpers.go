@@ -6,9 +6,9 @@ import (
 	"fmt"
 	"strings"
 
+	"github.com/jalapeno-api-gateway/jagw/pkg/arango"
 	"github.com/jalapeno-api-gateway/jagw/pkg/jagwerror"
 	"github.com/jalapeno-api-gateway/jagw/pkg/model/class"
-	"github.com/jalapeno-api-gateway/jagw/pkg/model/topology"
 	"github.com/sirupsen/logrus"
 )
 
@@ -67,27 +67,27 @@ func createErrorForKeysNotFound(keysNotFound []string) *jagwerror.Error {
 func unmarshalObject(logger *logrus.Entry, bytes []byte, className class.Class) interface{} {
 	switch className {
 	case class.LsNode:
-		document := topology.LsNode{}
+		document := arango.LsNode{}
 		handleUnmarshallingError(logger, json.Unmarshal(bytes, &document))
 		return document
 	case class.LsNodeCoordinates:
-		document := topology.LsNodeCoordinates{}
+		document := arango.LsNodeCoordinates{}
 		handleUnmarshallingError(logger, json.Unmarshal(bytes, &document))
 		return document
 	case class.LsLink:
-		document := topology.LsLink{}
+		document := arango.LsLink{}
 		handleUnmarshallingError(logger, json.Unmarshal(bytes, &document))
 		return document
 	case class.LsPrefix:
-		document := topology.LsPrefix{}
+		document := arango.LsPrefix{}
 		handleUnmarshallingError(logger, json.Unmarshal(bytes, &document))
 		return document
 	case class.LsSrv6Sid:
-		document := topology.LsSrv6Sid{}
+		document := arango.LsSrv6Sid{}
 		handleUnmarshallingError(logger, json.Unmarshal(bytes, &document))
 		return document
 	case class.LsNodeEdge:
-		document := topology.LsNodeEdge{}
+		document := arango.LsNodeEdge{}
 		handleUnmarshallingError(logger, json.Unmarshal(bytes, &document))
 		return document
 	default:
