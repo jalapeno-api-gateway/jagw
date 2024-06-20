@@ -160,6 +160,8 @@ func convertLsLink(doc interface{}, properties []string) *jagw.LsLink {
 			lsLink.NormalizedUnidirDelayVariation = proto.Float64(document.NormalizedUnidirDelayVariation)
 		case property.NormalizedUnidirPacketLoss:
 			lsLink.NormalizedUnidirPacketLoss = proto.Float64(document.NormalizedUnidirPacketLoss)
+		case property.UnidirPacketLossPercentage:
+			lsLink.UnidirPacketLossPercentage = proto.Float64(document.UnidirPacketLossPercentage)
 		case property.Rev:
 			lsLink.Rev = proto.String(document.Rev)
 		case property.PeerType:
