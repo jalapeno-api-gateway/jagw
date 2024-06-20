@@ -5,7 +5,6 @@ import (
 
 	"github.com/jalapeno-api-gateway/jagw/pkg/arango"
 	"github.com/jalapeno-api-gateway/jagw/pkg/model/class"
-	"github.com/jalapeno-api-gateway/jagw/pkg/model/topology"
 	"github.com/jalapeno-api-gateway/jagw/pkg/redis"
 	"github.com/sirupsen/logrus"
 )
@@ -44,19 +43,19 @@ func fetchDocumentToCache(ctx context.Context, key string, className class.Class
 	switch className {
 	case class.LsNode:
 		doc := arango.FetchLsNode(ctx, key)
-		return doc.ID, topology.ConvertLsNode(doc)
+		return doc.ID, doc
 	case class.LsLink:
 		doc := arango.FetchLsLink(ctx, key)
-		return doc.ID, topology.ConvertLsLink(doc)
+		return doc.ID, doc
 	case class.LsPrefix:
 		doc := arango.FetchLsPrefix(ctx, key)
-		return doc.ID, topology.ConvertLsPrefix(doc)
+		return doc.ID, doc
 	case class.LsSrv6Sid:
 		doc := arango.FetchLsSrv6Sid(ctx, key)
-		return doc.ID, topology.ConvertLsSrv6Sid(doc)
+		return doc.ID, doc
 	case class.LsNodeEdge:
 		doc := arango.FetchLsNodeEdge(ctx, key)
-		return doc.ID, topology.ConvertLsNodeEdge(doc)
+		return doc.ID, doc
 	default:
 		logrus.WithFields(logrus.Fields{"key": key, "className": className}).Panic("ClassName not implemented.")
 	}

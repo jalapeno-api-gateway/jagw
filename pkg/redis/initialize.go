@@ -6,7 +6,6 @@ import (
 
 	"github.com/go-redis/redis/v8"
 	"github.com/jalapeno-api-gateway/jagw/pkg/arango"
-	"github.com/jalapeno-api-gateway/jagw/pkg/model/topology"
 	"github.com/sirupsen/logrus"
 )
 
@@ -52,7 +51,7 @@ func loadLsNodeCollection() {
 
 	logrus.Debug("Writing LsNodeCollection to Redis cache.")
 	for _, document := range documents {
-		CacheObject(document.ID, topology.ConvertLsNode(document))
+		CacheObject(document.ID, document)
 	}
 }
 
@@ -63,7 +62,7 @@ func loadLsLinkCollection() {
 
 	logrus.Debug("Writing LsLinkCollection to Redis cache.")
 	for _, document := range documents {
-		CacheObject(document.ID, topology.ConvertLsLink(document))
+		CacheObject(document.ID, document)
 	}
 }
 
@@ -74,7 +73,7 @@ func loadLsPrefixCollection() {
 
 	logrus.Debug("Writing LsPrefixCollection to Redis cache.")
 	for _, document := range documents {
-		CacheObject(document.ID, topology.ConvertLsPrefix(document))
+		CacheObject(document.ID, document)
 	}
 }
 
@@ -85,7 +84,7 @@ func loadLsSrv6SidCollection() {
 
 	logrus.Debug("Writing LsSrv6SidCollection to Redis cache.")
 	for _, document := range documents {
-		CacheObject(document.ID, topology.ConvertLsSrv6Sid(document))
+		CacheObject(document.ID, document)
 	}
 }
 
@@ -96,7 +95,7 @@ func loadLsNodeEdgeCollection() {
 
 	logrus.Debug("Writing LsNodeEdgeCollection to Redis cache.")
 	for _, document := range documents {
-		CacheObject(document.ID, topology.ConvertLsNodeEdge(document))
+		CacheObject(document.ID, document)
 	}
 }
 
@@ -107,6 +106,6 @@ func loadLsNodeCoordinatesCollection() {
 
 	logrus.Debug("Writing LsNodeCoordinatesCollection to Redis cache.")
 	for _, document := range documents {
-		CacheObject(document.ID, topology.ConvertLsNodeCoordinates(document))
+		CacheObject(document.ID, document)
 	}
 }

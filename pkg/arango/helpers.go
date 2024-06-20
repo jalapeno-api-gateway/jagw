@@ -5,7 +5,6 @@ import (
 	"github.com/sirupsen/logrus"
 )
 
-
 func verifyDocument(logger *logrus.Entry, document driver.DocumentMeta, err error) bool {
 	if driver.IsNoMoreDocuments(err) {
 		return false

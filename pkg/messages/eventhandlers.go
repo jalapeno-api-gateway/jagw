@@ -27,15 +27,15 @@ func fetchDocument(ctx context.Context, logger *logrus.Entry, msg KafkaEventMess
 	if msg.Action == "del" {
 		switch className {
 		case class.LsNode:
-			return arango.LSNode{}
+			return arango.LsNode{}
 		case class.LsLink:
-			return arango.LSLink{}
+			return arango.LsLink{}
 		case class.LsPrefix:
-			return arango.LSPrefix{}
+			return arango.LsPrefix{}
 		case class.LsSrv6Sid:
-			return arango.LSSRv6SID{}
+			return arango.LsSrv6Sid{}
 		case class.LsNodeEdge:
-			return arango.LSNode_Edge{}
+			return arango.LsNodeEdge{}
 		default:
 			logger.Panic("ClassName not implemented.")
 
