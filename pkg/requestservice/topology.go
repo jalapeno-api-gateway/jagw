@@ -56,7 +56,7 @@ func convertLsNode(logger *logrus.Entry, doc interface{}, properties []string) *
 		case property.PeerType:
 			lsNode.PeerType = proto.Uint32(uint32(document.PeerType))
 		case property.SrAlgorithm:
-			helpers.ConvertSrAlgorithm(document.SRAlgorithm)
+			lsNode.SrAlgorithm = helpers.ConvertSrAlgorithm(document.SRAlgorithm)
 		case property.Srv6CapabilitiesTlv:
 			lsNode.Srv6CapabilitiesTlv = helpers.ConvertSrv6CapabilitiesTlv(document.SRv6CapabilitiesTLV)
 		case property.NodeMsd:
