@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkjalapeno_api_gateway_documentation=self.webpackChunkjalapeno_api_gateway_documentation||[]).push([[8574],{9476:a=>{a.exports={blogPosts:[]}}}]);
