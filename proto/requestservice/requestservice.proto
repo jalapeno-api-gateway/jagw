@@ -51,10 +51,6 @@ message TopologyRequest {
     repeated string properties = 2;
 }
 
-message LsNodeCoordinatesRequest {
-    repeated string ls_node_keys = 1;
-}
-
 message TelemetryRequest {
     required string sensor_path = 1;
     repeated string properties = 2;
